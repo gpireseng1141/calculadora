@@ -3,50 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10131f">
-  <meta name="description" content="Calculadora simples, rápida e responsiva.">
-  <title>Calculadora</title>
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Calculadora moderna com operações, atalhos de teclado e histórico.">
+  <title>Calculadora — rápida e prática</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
+  <main class="app-shell">
     <header class="topbar">
-      <div class="brand"><span class="brand-icon">＋</span><span>calculadora</span></div>
-      <span class="tag">SIMPLES • RÁPIDA</span>
+      <a class="brand" href="#" aria-label="Calculadora início"><span class="brand-mark">c</span><span>calc<span class="brand-accent">.</span></span></a>
+      <div class="topbar-right"><span class="live-dot"></span><span>PRONTA PARA USO</span></div>
     </header>
-    <section class="calculator" aria-label="Calculadora">
-      <div class="screen">
-        <div class="screen-label" id="status">Pronto para calcular</div>
-        <div class="expression" id="expression" aria-live="polite">0</div>
-        <div class="result" id="result" aria-live="polite">0</div>
-      </div>
-      <div class="keys">
-        <button class="key utility" data-action="clear">AC</button>
-        <button class="key utility" data-action="sign">±</button>
-        <button class="key utility" data-action="percent">%</button>
-        <button class="key operator" data-operator="÷">÷</button>
-        <button class="key" data-number="7">7</button>
-        <button class="key" data-number="8">8</button>
-        <button class="key" data-number="9">9</button>
-        <button class="key operator" data-operator="×">×</button>
-        <button class="key" data-number="4">4</button>
-        <button class="key" data-number="5">5</button>
-        <button class="key" data-number="6">6</button>
-        <button class="key operator" data-operator="−">−</button>
-        <button class="key" data-number="1">1</button>
-        <button class="key" data-number="2">2</button>
-        <button class="key" data-number="3">3</button>
-        <button class="key operator" data-operator="+">+</button>
-        <button class="key zero" data-number="0">0</button>
-        <button class="key" data-action="decimal">,</button>
-        <button class="key equals" data-action="equals">=</button>
-      </div>
-      <footer class="calculator-footer">
-        <span>Use o teclado ou clique nos botões</span>
-        <button id="copy" class="copy-button" type="button">Copiar resultado</button>
-      </footer>
+
+    <section class="workspace">
+      <section class="calculator-card" aria-label="Calculadora">
+        <div class="card-heading"><div><p class="eyebrow">SUA CALCULADORA</p><h1>Vamos calcular.</h1></div><span class="mode-pill">BÁSICA</span></div>
+        <div class="screen">
+          <div class="screen-top"><span id="status">Pronto para calcular</span><span class="screen-indicator">●</span></div>
+          <div class="expression" id="expression" aria-live="polite"></div>
+          <div class="result-row"><output class="result" id="result" aria-live="polite">0</output><span class="result-cursor"></span></div>
+        </div>
+        <div class="keys" id="keys">
+          <button class="key utility" data-action="clear" aria-label="Limpar tudo">AC</button>
+          <button class="key utility" data-action="sign" aria-label="Inverter sinal">+/−</button>
+          <button class="key utility" data-action="percent" aria-label="Porcentagem">%</button>
+          <button class="key operator" data-operator="÷" aria-label="Dividir">÷</button>
+
+          <button class="key" data-number="7">7</button><button class="key" data-number="8">8</button><button class="key" data-number="9">9</button>
+          <button class="key operator" data-operator="×" aria-label="Multiplicar">×</button>
+
+          <button class="key" data-number="4">4</button><button class="key" data-number="5">5</button><button class="key" data-number="6">6</button>
+          <button class="key operator" data-operator="−" aria-label="Subtrair">−</button>
+
+          <button class="key" data-number="1">1</button><button class="key" data-number="2">2</button><button class="key" data-number="3">3</button>
+          <button class="key operator" data-operator="+" aria-label="Somar">+</button>
+
+          <button class="key utility function-key" data-action="sqrt" aria-label="Raiz quadrada">√</button>
+          <button class="key zero" data-number="0">0</button>
+          <button class="key" data-action="decimal" aria-label="Vírgula decimal">,</button>
+          <button class="key equals" data-action="equals" aria-label="Calcular resultado">=</button>
+        </div>
+        <div class="extra-actions">
+          <button class="text-action" data-action="square">x² <span>Elevar ao quadrado</span></button>
+          <button class="text-action" data-action="backspace">⌫ <span>Apagar último</span></button>
+          <button class="text-action" id="copy">▢ <span>Copiar resultado</span></button>
+        </div>
+        <div class="keyboard-note"><span class="keyboard-icon">⌨</span> Você também pode usar o teclado do computador <kbd>?</kbd></div>
+      </section>
+
+      <aside class="side-panel">
+        <section class="side-card history-card">
+          <div class="side-heading"><div><p class="eyebrow">SEUS CÁLCULOS</p><h2>Histórico</h2></div><button id="clear-history" class="clear-history" type="button">Limpar</button></div>
+          <div id="history" class="history-list"><p class="empty-history">Seus cálculos recentes aparecerão aqui.</p></div>
+        </section>
+        <section class="side-card shortcuts-card">
+          <p class="eyebrow">ATALHOS DO TECLADO</p><h2>Mais rápido no teclado.</h2>
+          <div class="shortcut-list">
+            <div><span>Números</span><kbd>0–9</kbd></div>
+            <div><span>Operações</span><kbd>+ − * /</kbd></div>
+            <div><span>Calcular</span><kbd>Enter</kbd></div>
+            <div><span>Apagar</span><kbd>Backspace</kbd></div>
+            <div><span>Limpar tudo</span><kbd>Esc</kbd></div>
+            <div><span>Porcentagem</span><kbd>%</kbd></div>
+          </div>
+        </section>
+        <p class="side-footnote">Simples por fora. Prática em cada conta.</p>
+      </aside>
     </section>
-    <p class="credit">Feita para funcionar direto no navegador.</p>
+    <footer class="page-footer"><span>CALC<span class="brand-accent">.</span></span><span>Feita para facilitar seu dia.</span></footer>
   </main>
   <script src="script.js"></script>
 </body>
