@@ -47,6 +47,7 @@ function calculate(){
 function clearAll(){current="0";previous=null;operator=null;replaceCurrent=false;justCalculated=false;expressionEl.textContent="";statusEl.textContent="Pronto para calcular";render();}
 function applyAction(action){
  if(action==="clear"){clearAll();return;}
+ if(action==="decimal"){decimal();return;}
  if(action==="equals"){calculate();return;}
  if(current==="Erro")return;
  const value=numericValue();
