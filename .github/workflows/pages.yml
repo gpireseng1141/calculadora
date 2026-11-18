@@ -1,4 +1,5 @@
 name: Publicar calculadora no GitHub Pages
+# Deploy automático da versão atual
 
 on:
   push:
